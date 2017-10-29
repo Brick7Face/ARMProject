@@ -23,8 +23,8 @@ cond2:
 	ADD X3, X21, #1				//start = mid + 1;
 	B while						//repeat while
 exit:
-	MOV X0, X21
-	BR X30						//return mid
+	MOV X0, X21					//set return value (X0) to mid
+	BR X30						//branch back to C program
 exit1:
-	MOV X0, #-1
-	BR X30						//return -1
+	MOV X0, #-1					//set return value to -1
+	BR X30						//branch back to C program
