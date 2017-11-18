@@ -23,8 +23,8 @@ cond2:
 	ADD X3, X21, #1				//start = mid + 1;
 	B while						//repeat while
 exit:
-	//MOV X0, X21					//set return value (X0) to mid (for returning position)
-	MOV X0, X12					//set return value (X0) to inputArr[mid] (for returning value)
+	MOV X0, X21					//set return value (X0) to mid (for returning position)
+	//MOV X0, X12					//set return value (X0) to inputArr[mid] (for returning value)
 	BR X30						//branch back to C program
 exit1:
 	MOV X0, #-1					//set return value to -1

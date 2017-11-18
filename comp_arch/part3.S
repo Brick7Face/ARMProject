@@ -49,7 +49,7 @@ exchange:
 	STUR X15, [X11, #0]							//store value of array[j] in array[i]
 	STUR X25, [X14, #0]  						//store value of temp in array[j]
 	ADD X19, X19, #1							//i++
-	ADD X20, X20, #1							//j++
+	SUB X20, X20, #1							//j--
 	B quicksort									//return to top of outer while loop
 recur:
 	CMP X4, X20									//compare low to j
