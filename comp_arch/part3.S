@@ -4,8 +4,6 @@ part_three:										//takes an array, the array size, and an integer to search 
 	B.EQ exit1
 	SUB X3, X2, #1								//subtract 1 from the array length for array.length-1; X3 will represent high value in quicksort
 	MOV X4, XZR									//X4 will represent low value in quicksort
-	B quicksort									//begin quicksort function
-quicksort:
 	MOV X19, X4									//X19 will represent i in quicksort
 	MOV X20, X3									//X20 will represent j in quicksort
 	SUB X21, X3, X4								//high - low
@@ -15,6 +13,8 @@ quicksort:
 	LSL X10, X23, #3							//multiply the index by 8 to get byte address
 	ADD X11, X0, X10							//access pivot in array
 	LDUR X12, [X11, #0]							//load the pivot value into X12	--> X12 is pivot
+	B quicksort									//begin quicksort function
+quicksort:
 	CMP X19, X20								//compare i and j
 	B.GT recur									//branch to recursion step if i is greater than j
 	B while1									//branch to first while loop
@@ -55,11 +55,15 @@ recur:
 	CMP X4, X20									//compare low to j
 	B.GE recur2									//if low >= j, move to next recursion check
 	MOV X3, X20									//if low < j, move j into the high value spot
+	MOV X19, X4									//X19 will represent i
+	MOV X20, X3									//X20 will represent j
 	B quicksort									//perform quicksort with these new parameters
 recur2:
 	CMP X19, X3									//compare i to high
 	B.GE exit									//if i >= high, then program is done
 	MOV X4, X19									//if i < high, move i into low value spot
+	MOV X19, X4									//X19 will represent i
+	MOV X20, X3									//X20 will represent j
 	B quicksort									//perform quicksort with these new parameters
 exit1:											//returns an error if array is of length 0 to begin
 	MOV X0, #-1
