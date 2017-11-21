@@ -21,14 +21,14 @@ int main(void)
 	assert( -1 == binary_search(sorted, 15, 35) );
 
 
-	//code for part 3 - part 3 implements quicksort and returns the first index of the value of the 3rd parameter
-	//for example, 15 as the 3rd parameter should return 12, as it will be sorted to be in position 12 of this array
-	long long int arr[20] = {9, 19, 27, 13, 4, 1, 18, 19, 7, 4, 3, 2, 15, 14, 11, 16, 19, 17, 3, 1};
-	int value = 15;
-    long long int returned_part3 = part_three(arr, 20, value);
-    printf("The value %f is located at %ld in the sorted array from part 3.\n", value, returned_part3);
-
-    //sorted array = [1, 1, 2, 3, 4, 4, 4, 7, 9, 11, 13, 14, 15, 16, 17, 18, 19, 19, 19, 27]
+	//code for part 3 - part 3 implements quicksort and returns the value in the array at the index provided. The index is in
+	//human speak; for example, index 4 in an array {1, 2, 3, 4, 5} would contain the value 4.
+	//long long int arr[20] = {9, 19, 27, 13, 4, 1, 18, 19, 7, 4, 3, 2, 15, 14, 11, 16, 19, 17, 3, 1};
+	//sorted array = [1, 1, 2, 3, 4, 4, 4, 7, 9, 11, 13, 14, 15, 16, 17, 18, 19, 19, 19, 27]
+	long long int arr[7] = {15, 2, 4, 4, 4, 16, 3};
+	int value = 1;
+	long long int returned_part3 = part_three(arr, 7, value);
+    printf("The position %d in the sorted array from Part 3 contains the value %ld.\n", value, returned_part3);
 
     return 0;
 }
