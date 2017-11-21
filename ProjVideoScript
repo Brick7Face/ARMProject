@@ -1,0 +1,12 @@
+Script for video:
+
+For the computer architecture project part 3, I implemented quicksort. I used an open-source Java implementation of quicksort
+as a framework for the ARM code. This was a bit more difficult to implement than in Java, as every little calculation requires
+a line of code. The loops were challenging as well, as every loop required breaking to a new section in the ARM code. Since 
+quicksort does sometimes have the potential to end and not be 100% correct, I implemented some redundancy functions as well. 
+Though the quicksort algorithm took a few more lines to implement than in Java, it did not quite satisfy the 90 line requirement,
+so I figured the redundancy measures would be a nice solution to this issue. In order to fully make sure that the array is sorted,
+I make sure that the program runs quicksort twice and then goes through an elementary sorting process to clean any sort of other
+issues up. Though this is not necessary in most cases and hurts the total time complexity of part three, it does ensure that part
+three returns the correct result. Finally, I have the C program set up with a few assert statements to ensure that the program 
+sorts the array correctly.
