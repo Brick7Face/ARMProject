@@ -3,7 +3,7 @@ part_three:										//takes an array, the array size, and an integer to search 
 	CMP X1, XZR									//compare X1 (the array length) to zero; if zero, branch to exit1
 	B.EQ exit1
 	MOV X5, #1									//counter for times quicksort has run
-	SUB X3, X1, #0								//subtract 1 from the array length for array.length-1; X3 will represent high value in quicksort
+	SUB X3, X1, #1								//subtract 1 from the array length for array.length-1; X3 will represent high value in quicksort
 	MOV X4, XZR									//X4 will represent low value in quicksort
 quicksort:
 	MOV X19, X4									//X19 will represent i in quicksort
@@ -68,9 +68,40 @@ exit1:											//returns an error if array is of length 0 to begin
 	BR	X30
 check:
 	ADD X5, X5, #1								//add one to the times quicksort sorted
+	MOV X19, #1									//i = 1 for insertion sort
 	CMP X5, #1									//compare that value to 1
 	B.EQ part_three								//if it is only 1 time, do it again for accuracy
-	B exit										//otherwise exit
+	B insertion									//otherwise branch to last redundancy step
+insertion:										//last step of redundancy - insertion sort
+	CMP X19, X1									//check i < n (where n is size of array)
+	B.GE exit									//if not, then finally exit
+	LSL X10, X19, #3							//multiply i by 8 to get byte address
+	ADD X11, X0, X10							//access array[i]
+	LDUR X12, [X11, #0]							//load array[i] into X12
+	MOV X21, X12								//key = array[i]; key is X21
+	SUB X20, X19, #1							//j = i - 1
+	B lastWhile									//otherwise go to the while loop
+lastWhile:
+	CMP X20, XZR								//compare j and zero
+	B.LT lastStep								//if j < 0, exit while
+	LSL X13, X20, #3							//get byte address of j
+	ADD X14, X0, X13							//access array[j]
+	LDUR X15, [X14, #0]							//load value at array[j] into X15
+	CMP X15, X21
+	B.LE lastStep								//if array[j] <= key, exit while
+	ADD X22, X20, #1							//j + 1
+	LSL X23, X22, #3							//get byte address of j+1
+	ADD X24, X0, X23							//access array[j+1]
+	STUR X15, [X24, #0]							//array[j+1] = array[j]
+	SUB X20, X20, #1							//j--
+	B lastWhile
+lastStep:
+	ADD X22, X20, #1							//j + 1
+	LSL X23, X22, #3							//get byte address of j+1
+	ADD X24, X0, X23							//access array[j+1]
+	STUR X21, [X24, #0]							//array[j+1] = key
+	ADD X19, X19, #1							//i++
+	B insertion
 exit:
 	SUB X19, X2, #1								//position in array minus 1
 	LSL X10, X19, #3							//get byte address of the correct index
