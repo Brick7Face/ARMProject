@@ -14,6 +14,21 @@ Though this is not necessary in most cases and hurts the total time complexity o
 three returns the correct result. Finally, I have the C program set up with a few assert statements to ensure that the program 
 sorts the array correctly.
 
+With the use of ARM it is difficult to run two algorithms such as these in an efficient manner to compare their performance with the use of time. In java or C, we could implement a timer of sort; but in ARM, this is not as easily done.
+
+As you will notice throughout the running of the program, and the duration of the video, the values stored in the registers found in the “register” tab in the upper right corner, are being constantly changed and reordered using the quicksort algorithm, along with the insertion sort algorithm as a redundancy measure to ensure that the array is sorted correctly. The values being displayed are in hexadecimal, but are equivalent to the integer values being entered.
+
+While it’s hard to follow the lines of code directly as it is running, you can see in the “target console” tab in the bottom right corner at the end of the program that the outputs are consistent with what is found in the registers. 
+
+In this case, we wanted to find what value is found at position 4 in the first entered array after sorting, this array being of length 20; and the second output is what value is found at position 2 in the second inputted array after sorting, which is of length 7.
+
+After letting the program run through its iterations, we will receive these positional values as outputs, confirming that the arrays were correctly sorted after comparing them to the values found in the registers
+
+The results displayed are:
+the value 29 is located at position 14 in the array, this result is from running part 2 of the project, which expects to find what position the value 29 is at using binary search
+The 4th position in the array contains the value 3
+And the 2nd position in the second
+
 As I hinted at, the problem here was trying to sort an array, and the solution in my program was quicksort coupled with insertion sort.
 
 I learned a lot about the complexities of coding in ARM, like the steps it takes to do things that are relatively basic in Java. If I
